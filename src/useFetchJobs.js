@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useReducer } from 'react'
 
-const BASE_URL = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json";
+const BASE_URL = "https://jobs.github.com/positions.json";
 
 const ACTIONS = {
     MAKE_REQUEST: 'make_request',
@@ -40,11 +40,10 @@ export default function useFetchJobs(params, page) {
             dispatch({ type: ACTIONS.ERROR, payload: { error: e }})
         })
 
-    })
+        return () => {
+            source.cancel();
+        }
 
-    return {
-        jobs: [],
-        loading: false,
-        error: false
-    }
+    }, [params, page])
+    return state;
 }
