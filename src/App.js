@@ -9,7 +9,8 @@ function App() {
   const { jobs, loading, error } = useFetchJobs(params, page)
 
   return (
-    <Container>
+    <Container className="my-3">
+      <h1 className="mb-4">Github Jobs</h1>
       { loading && <h1>loading...</h1>}
       { error && <h1>error, try refreshing</h1>}
       {
